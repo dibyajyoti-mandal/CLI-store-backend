@@ -10,15 +10,13 @@ import (
 
 func setupRoutes(app *fiber.App) {
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Api test")
+		return c.SendString("Root endpoint ")
 	})
 }
 
 func main() {
 	fmt.Print("BOOTING SERVER...\n")
 	app := fiber.New()
-
-	// Set up routes
 	setupRoutes(app)
 
 	// Connect to db
@@ -40,4 +38,7 @@ func main() {
 	if err := app.Listen(":8000"); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
+
 }
+
+// run with "air server --port 8000"

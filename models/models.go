@@ -1,9 +1,16 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"time"
 
-type Product struct {
+	"gorm.io/gorm"
+)
+
+type Item struct {
 	gorm.Model
-	Name  string
-	Price int
+	Name      string
+	Price     int
+	Available bool
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
