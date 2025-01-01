@@ -9,21 +9,13 @@ import (
 )
 
 func setupRoutes(app *fiber.App) {
-
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Api test")
 	})
-	// app.Get("/api/getItems", GetItems)
-	// app.Get("/api/getItem", GetItem)
-	// app.Post("/api/addItem", AddItem)
-	// app.Delete("/api/delItem", DeleteItem)
-	fmt.Println("Routes setup...")
 }
 
 func main() {
 	fmt.Print("BOOTING SERVER...\n")
-
-	// Initialize Fiber app
 	app := fiber.New()
 
 	// Set up routes
@@ -34,10 +26,10 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %v", err)
 	}
-	// Closing db
+	// Close db connection
 	sqlDB, err := db.DB()
 	if err != nil {
-		log.Fatalf("Failed to get sql.DB from gorm.DB: %v", err)
+		log.Fatalf("Failed to get sql-DB from gorm.DB: %v", err)
 	}
 	defer func() {
 		if err := sqlDB.Close(); err != nil {
