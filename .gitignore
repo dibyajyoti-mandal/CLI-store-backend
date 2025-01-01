@@ -28,4 +28,4 @@ vendor/
 coverage.out
 
 #database
-test.db
+/test.db
