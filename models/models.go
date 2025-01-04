@@ -1,16 +1,12 @@
 package models
 
 import (
-	"time"
-
 	"gorm.io/gorm"
 )
 
 type Item struct {
 	gorm.Model
-	Name      string
-	Price     int
-	Available bool
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Name      string `json:"name"`
+	Price     int    `json:"price"`
+	Available bool   `json:"available"`
 }
