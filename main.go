@@ -5,18 +5,26 @@ import (
 	"log"
 
 	"github.com/dibyajyoti-mandal/cli-backend/database"
+	"github.com/dibyajyoti-mandal/cli-backend/handlers"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func setupRoutes(app *fiber.App) {
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Root endpoint ")
-	})
+	app.Get("/", handlers.TestRoot)
+	api := app.Group("/api")
+
+	api.Get("/", handlers.GetAllItems)
+	api.Get("/item/:id", handlers.GetItem)
+	api.Post("/item", handlers.NewItem)
+	api.Delete("/item/:id", handlers.DeleteItem)
+	api.Put("/item/sell/:id", handlers.UpdateItem)
 }
 
 func main() {
 	fmt.Print("BOOTING SERVER...\n")
 	app := fiber.New()
+	app.Use(cors.New())
 	setupRoutes(app)
 
 	// Connect to db
@@ -34,7 +42,6 @@ func main() {
 			log.Fatalf("Failed to close database connection: %v", err)
 		}
 	}()
-	// Start the server
 	if err := app.Listen(":8000"); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
