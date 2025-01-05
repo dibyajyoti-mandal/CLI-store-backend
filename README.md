@@ -8,12 +8,12 @@ Backend written in Go Fiber using sqlite database for CLI store management tool.
 
 #### Get all items
 
-```http
+```bash
   GET /api
 ```
 #### Get item
 
-```http
+```bash
   GET /api/items/${id}
 ```
 
@@ -22,12 +22,12 @@ Backend written in Go Fiber using sqlite database for CLI store management tool.
 | `id`      | `string` | **Required**. Id of item to fetch |
 
 #### New item
-```http
+```bash
   POST /api/item
 ```
 #### Sell (update) item
 
-```http
+```bash
     PUT /api/item/sell/${id}
 ```
 | Parameter | Type     | Description                       |
@@ -37,7 +37,7 @@ Backend written in Go Fiber using sqlite database for CLI store management tool.
 
 #### Delete item
 
-```http
+```bash
     DELETE /api/item/${id}
 ```
 | Parameter | Type     | Description                       |
